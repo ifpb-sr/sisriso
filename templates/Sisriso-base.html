@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+    <style>
+
+   
+    
+    ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #2290fa;
+}
+li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+li a {
+    display: block; 
+    color: white;
+    font-family: arial;
+    font-weight: bold;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: #111;
+}
+.active {
+    background-color: #4C50AF;
+}
+img{
+    margin-right: -50;
+}
+img.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+    
+    body{
+        background-color: #21507c;
+    }
+
+    </style>
+<head>
+<title>Base do site</title>
+
+<img class="logo" src="/home/william/Downloads/logo_dentista.png" alt="Logo_Sisriso" width=150 height=80>
+
+
+</head>
+
+<body>
+        
+    <ul>
+        <li><a id="Inicial" href="#inicial" onclick="curSec(this.id)">Inicial</a></li>
+        <li><a id="CdC" href="#cadastro_do_cliente" onclick="curSec(this.id)">Cadastro do Cliente</a></li>
+        <li><a id="CdD" href="#cadastro_do_dentista" onclick="curSec(this.id)">Cadastro do Dentista</a></li>
+        <li><a id="Formulário" href="#formulario" onclick="curSec(this.id)">Formulário</a></li>
+      </ul>
+
+
+</body>
+<footer>
+
+</footer>
+
+</html>
