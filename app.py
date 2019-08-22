@@ -47,9 +47,15 @@ def dentistas():
     dentistas = Dentista.query.all()
     return render_template('dentistas/dentistas.html', dentistas=dentistas)
 
+
 @app.route('/secretarias/novo')
 def secretarias():
     return render_template('secretaria/secretarias.html')
+
+@app.route('/home', methods=['GET'])
+def index():
+    return render_template('base.html', dentistas=dentistas)
+
 
 @app.shell_context_processor
 def make_shell_context():
