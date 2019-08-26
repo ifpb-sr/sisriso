@@ -52,9 +52,13 @@ def dentistas():
 def secretarias():
     return render_template('secretaria/secretarias.html')
 
-@app.route('/home', methods=['GET'])
-def index():
-    return render_template('base.html', dentistas=dentistas)
+@app.route('/')
+def inicio():
+    return render_template ("base.html")
+
+@app.route('/cadastrodentista')
+def cadastrodentista():
+    return render_template ("cadastrodentista/cadastro_dentista.html")
 
 
 @app.shell_context_processor
