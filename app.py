@@ -41,24 +41,29 @@ class Dentista(db.Model):
         db.session.add(Dentista(nome="Lima"))
         db.session.commit()
     
-
-@app.route('/dentistas', methods=['GET'])
-def dentistas():
-    dentistas = Dentista.query.all()
-    return render_template('dentistas/dentistas.html', dentistas=dentistas)
-
-
-@app.route('/secretarias/novo')
-def secretarias():
-    return render_template('secretaria/secretarias.html')
-
-@app.route('/')
+@app.route('/', methods=['GET'])
 def inicio():
-    return render_template ("base.html")
+    return render_template("base.html")
 
-@app.route('/cadastrodentista')
-def cadastrodentista():
-    return render_template ("cadastrodentista/cadastro_dentista.html")
+
+@app.route('/clientes', methods=['GET'])
+def clientes():
+    return render_template('clientes/clientes.html')
+
+
+@app.route('/dentista/cadastro')
+def cadastroDentista():
+    return render_template('dentistas/cadastro_dentista.html')
+
+
+@app.route('/procedimentos')
+def procedimentos():
+    return render_template('procedimentos/procedimentos.html')
+
+
+@app.route('/secretaria/cadastro')
+def cadastroSecretaria():
+    return render_template('secretaria/cadastroSecretaria.html')
 
 
 @app.shell_context_processor
