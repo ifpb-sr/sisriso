@@ -41,12 +41,12 @@ class Dentista(db.Model):
         db.session.add(Dentista(nome="Lima"))
         db.session.commit()
     
-@app.route('/', methods=['GET'])
+@app.route('/')
 def inicio():
     return render_template("base.html")
 
 
-@app.route('/clientes', methods=['GET'])
+@app.route('/clientes')
 def clientes():
     return render_template('clientes/clientes.html')
 
