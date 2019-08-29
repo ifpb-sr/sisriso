@@ -26,9 +26,9 @@ class Pacientes(db.Model):
     idade = db.Column(db.Integer)
     sexo = db.Column(db.String(1))
     rg = db.Column(db.String(14))
-    cpf = db.Column(db.String(14))
+    cpf = db.Column(db.String(14), unique=True)
     profissao = db.Column(db.String(64))
-    indicacao = db.Column(db.Column(64))
+    indicacao = db.Column(db.String(64))
     # endereco
     rua = db.Column(db.String(64))
     bairo = db.Column(db.String(64))
@@ -41,8 +41,9 @@ class Pacientes(db.Model):
     urgenciaNome = db.Column(db.String(64))
     urgenciaTelefone = db.Column(db.String(11))
     observacao = db.Column(db.String(128))
+    #fim urgencia
     
-    telefones = 0 #FK
+    contatos = 0 #FK
     convenios = 0 #FK
     
     '''@staticmethod
@@ -79,6 +80,8 @@ class Anamneses(db.Model):
 
 class Medicamentos(db.Model):
     __tablename__ = 'MEDICAMENTOS'
+    id = db.Column(db.String(4), )
+    nome = db.Column(db.String(32))
     pass
     
 class Medicos(db.Model):
