@@ -13,11 +13,11 @@ Para utilizar o sisriso faz-se necessário configurar algumas variáveis de ambi
 # Executar
 
 ## Pré-requisitos
-    repositório baixado
-    estar na pasta do repositório
-    pipenv instalado
-    estar com o ambiente virtual do pipenv ativado
-    estar com as dependencias do pipenv instalado
+    * repositório baixado
+    * estar na pasta do repositório
+    * pipenv instalado
+    * estar com o ambiente virtual do pipenv ativado
+    * estar com as dependencias do pipenv instalado
     
 ## Execução
 
