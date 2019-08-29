@@ -10,7 +10,7 @@ Para utilizar o sisriso faz-se necessário configurar algumas variáveis de ambi
     cp .env.exemplo .env
     
 
-# Executar
+# Testar
 
 ## Pré-requisitos
     * repositório baixado
