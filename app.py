@@ -14,41 +14,21 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 
-'''if os.environ.get('DYNO'):
-    # Produção no heroku
-else:
-    app.config['SECRET_KEY'] = 'hard to guess string'
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    app.config['SQLALCHEMY_DATABASE_URI'] =\
-    'sqlite:///' + os.path.join(basedir, 'data.sqlite')'''
-
-
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-  
-'''class Dentista(db.Model):
-    __tablename__ = 'dentistas'
-    id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(128))
-    
-    
-    @staticmethod
-    def inserir_tipos():
-        db.session.add(Dentista(nome="Ismael"))
-        db.session.add(Dentista(nome="Alves"))
-        db.session.add(Dentista(nome="Lima"))
-        db.session.commit()'''
-
 class Pacientes(db.Model):
     __tablename__ = 'PACIENTES'
     id = db.Column(db.String(4), primary_key=True)
-    cpf = db.Column(db.String(14))
     nome = db.Column(db.String(64))
     tipoSanguinio = db.Column(db.String(3))
     idade = db.Column(db.Integer)
     sexo = db.Column(db.String(1))
+    rg = db.Column(db.String(14))
+    cpf = db.Column(db.String(14))
+    profissao = db.Column(db.String(64))
+    indicacao = db.Column(db.Column(64))
     # endereco
     rua = db.Column(db.String(64))
     bairo = db.Column(db.String(64))
@@ -57,7 +37,30 @@ class Pacientes(db.Model):
     cidade = db.Column(db.String(34))
     estado = db.Column(db.String(34))
     # fim endereco
-    rg = db.Column(db.String(14))
+    #urgencia
+    
+    '''@staticmethod
+    def inserir_tipos():
+        db.session.add(Dentista(nome="Ismael"))
+        db.session.add(Dentista(nome="Alves"))
+        db.session.add(Dentista(nome="Lima"))
+        db.session.commit()'''
+
+        
+class Convenios(db.Model):
+    id = db.Column(db.String(4), primary_key=True)
+    tipoPlano = db.Column(db.String(32))
+    matr = db.Column(db.String(14))
+    
+
+class Contatos(db.Model):
+    pass
+
+class Anamneses(db.Model):
+    pass
+
+class Doencas(db.Model):
+    pass
 
 @app.route('/')
 def inicio():
