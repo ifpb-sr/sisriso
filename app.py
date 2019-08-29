@@ -27,24 +27,9 @@ bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-  
-class Dentista(db.Model):
-    __tablename__ = 'dentistas'
-    id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(128))
-    
-    
-    @staticmethod
-    def inserir_tipos():
-        db.session.add(Dentista(nome="Ismael"))
-        db.session.add(Dentista(nome="Alves"))
-        db.session.add(Dentista(nome="Lima"))
-        db.session.commit()
-    
 @app.route('/')
 def inicio():
     return render_template("base.html")
-
 
 @app.route('/clientes')
 def clientes():
