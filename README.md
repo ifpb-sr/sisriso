@@ -10,7 +10,7 @@ Para utilizar o sisriso faz-se necessário configurar algumas variáveis de ambi
     cp .env.exemplo .env
     
 
-# Testar
+# Testar HTML com templates
 
 ## Pré-requisitos
     * repositório baixado
@@ -19,8 +19,7 @@ Para utilizar o sisriso faz-se necessário configurar algumas variáveis de ambi
     * estar com o ambiente virtual do pipenv ativado
     * estar com as dependencias do pipenv instalado
     
-## Execução
+## Configurações
+Coloque o caminho do arquivo HTML no return da sua rota
 
-
-
-
+Caminho:
