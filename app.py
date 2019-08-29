@@ -56,16 +56,20 @@ class Pacientes(db.Model):
         
 class Convenios(db.Model):
     __tablename__ = 'CONVENIOS'
-    id = db.Column(db.String(4), primary_key=True)
+    id = db.Column(db.String(4), primary_key=True) #VERIFICAR
+    
     tipoPlano = db.Column(db.String(32))
     matr = db.Column(db.String(14))
 
 class Contatos(db.Model):
     __tablename__ = 'CONTATOS'
+    id = db.Column(db.String(4), primary_key=True) #VERIFICAR
     contato = db.Column(db.String(11))
 
 class Anamneses(db.Model):
     __tablename__ = 'ANAMNESES'
+    id = db.Column(db.String(4), primary_key=True) #VERIFICAR
+    
     bemSaude = db.Column(db.Boolean)
     sobCuidado = db.Column(db.Boolean)
     motivoCuidado = db.Column(db.String(64), default="")
@@ -80,17 +84,23 @@ class Anamneses(db.Model):
 
 class Medicamentos(db.Model):
     __tablename__ = 'MEDICAMENTOS'
+    id = db.Column(db.String(4), primary_key=True) #VERIFICAR
+    
     id = db.Column(db.String(4), )
     nome = db.Column(db.String(32))
     pass
     
 class Medicos(db.Model):
     __tablename__ = 'MEDICOS'
+    id = db.Column(db.String(4), primary_key=True) #VERIFICAR
+    
     telefone = 0 #TELEFONE DO MEDICO
     pass
 
 class Doencas(db.Model):
     __tablename__ = 'DOENCAS'
+    id = db.Column(db.String(4), primary_key=True) #VERIFICAR
+    
     pass
 
 @app.route('/')
