@@ -14,6 +14,7 @@ Para utilizar o sisriso faz-se necessário configurar algumas variáveis de ambi
 
 ## Pré-requisitos
     * repositório baixado
+        $ git clone
     * estar na pasta do repositório
     * pipenv instalado
     * estar com o ambiente virtual do pipenv ativado
