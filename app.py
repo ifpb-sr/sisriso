@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, session, redirect, url_for, flash
+from flask import Flask, render_template, session, redirect, url_for, flash, request
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, SubmitField, HiddenField
@@ -43,9 +43,9 @@ class Pacientes(db.Model): #REVISADO
     observacao = db.Column(db.String(128))
     #fim urgencia
     
-    contatos = db.relationships('Contatos', backref='PACIENTES') #FK
-    convenios = db.relationships('Convenios', backref='PACIENTES') #FK
-    doencas = db.relationships('Doencas', backref='PACIENTES') #FK
+    contatos = db.relationship('Contatos', backref='PACIENTES') #FK
+    convenios = db.relationship('Convenios', backref='PACIENTES') #FK
+    doencas = db.relationship('Doencas', backref='PACIENTES') #FK
     
     '''@staticmethod
     def inserir_tipos():
@@ -84,12 +84,12 @@ class Anamneses(db.Model):
     tempoFuma = db.Column(db.Interval)
     cigarrosPorDia = db.Column(db.Integer)
     
-    medicamentos = db.relationships('Medicamentos', backref='ANAMNESES') #FK
-    medicoResponsavel = db.relationships('Medicos', backref='ANAMNESES') #FK
+    medicamentos = db.relationship('Medicamentos', backref='ANAMNESES') #FK
+    medicoResponsavel = db.relationship('Medicos', backref='ANAMNESES') #FK
 
 class Medicamentos(db.Model):
     __tablename__ = 'MEDICAMENTOS'
-    id = db.Column(db.Integer, Primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(32))
     anamneses_id = db.Column(db.Integer, db.ForeignKey('ANAMNESES.id'))
 
@@ -97,7 +97,7 @@ class Medicos(db.Model):
     __tablename__ = 'MEDICOS'
     id = db.Column(db.Integer, primary_key=True) #VERIFICAR
     
-    telefone = db.relationships('Contatos', backref='MEDICOS') #TELEFONE DO MEDICO
+    telefone = db.relationship('Contatos', backref='MEDICOS') #TELEFONE DO MEDICO
 
 class Doencas(db.Model):
     __tablename__ = 'DOENCAS'
@@ -116,9 +116,12 @@ def clientes():
     return render_template('clientes/clientes.html')
 
 
-@app.route('/dentista/cadastro')
+@app.route('/dentista/cadastro', methods = ['POST', 'GET'])
 def cadastroDentista():
-    return render_template('dentistas/cadastro_dentista.html')
+    teste = request.args.get('select')
+    teste2 = request.args.get('Cnome')
+    print(teste, teste2)
+    return render_template('dentistas/cadastrodentista2.html')
 
 
 @app.route('/procedimentos')
