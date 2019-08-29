@@ -38,6 +38,12 @@ class Pacientes(db.Model):
     estado = db.Column(db.String(34))
     # fim endereco
     #urgencia
+    urgenciaNome = db.Column(db.String(64))
+    urgenciaTelefone = db.Column(db.String(11))
+    observacao = db.Column(db.String(128))
+    
+    telefones = 0 #FK
+    convenios = 0 #FK
     
     '''@staticmethod
     def inserir_tipos():
@@ -48,18 +54,40 @@ class Pacientes(db.Model):
 
         
 class Convenios(db.Model):
+    __tablename__ = 'CONVENIOS'
     id = db.Column(db.String(4), primary_key=True)
     tipoPlano = db.Column(db.String(32))
     matr = db.Column(db.String(14))
-    
 
 class Contatos(db.Model):
-    pass
+    __tablename__ = 'CONTATOS'
+    contato = db.Column(db.String(11))
 
 class Anamneses(db.Model):
+    __tablename__ = 'ANAMNESES'
+    bemSaude = db.Column(db.Boolean)
+    sobCuidado = db.Column(db.Boolean)
+    motivoCuidado = db.Column(db.String(64), default="")
+    usaMedicamentos = db.Column(db.Boolean)
+    hemorragia = db.Column(db.Boolean)
+    fumante = db.Column(db.Boolean)
+    tempoFuma = db.Column(db.Interval)
+    cigarrosPorDia = db.Column(db.Integer)
+    
+    medicamentos = 0 #FK
+    medicoResponsavel = 0 #FK
+
+class Medicamentos(db.Model):
+    __tablename__ = 'MEDICAMENTOS'
+    pass
+    
+class Medicos(db.Model):
+    __tablename__ = 'MEDICOS'
+    telefone = 0 #TELEFONE DO MEDICO
     pass
 
 class Doencas(db.Model):
+    __tablename__ = 'DOENCAS'
     pass
 
 @app.route('/')
