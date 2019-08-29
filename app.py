@@ -18,9 +18,9 @@ bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-class Pacientes(db.Model):
+class Pacientes(db.Model): #REVISADO
     __tablename__ = 'PACIENTES'
-    id = db.Column(db.String(4), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(64))
     tipoSanguinio = db.Column(db.String(3))
     idade = db.Column(db.Integer)
@@ -43,8 +43,9 @@ class Pacientes(db.Model):
     observacao = db.Column(db.String(128))
     #fim urgencia
     
-    contatos = 0 #FK
-    convenios = 0 #FK
+    contatos = db.relationships('Contatos', backref='PACIENTES') #FK
+    convenios = db.relationships('Convenios', backref='PACIENTES') #FK
+    doencas = db.relationships('Doencas', backref='PACIENTES') #FK
     
     '''@staticmethod
     def inserir_tipos():
@@ -54,21 +55,25 @@ class Pacientes(db.Model):
         db.session.commit()'''
 
         
-class Convenios(db.Model):
+class Convenios(db.Model): #REVISADO
     __tablename__ = 'CONVENIOS'
-    id = db.Column(db.String(4), primary_key=True) #VERIFICAR
-    
+    id = db.Column(db.Integer, primary_key=True) #VERIFICAR
     tipoPlano = db.Column(db.String(32))
     matr = db.Column(db.String(14))
+    
+    paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id'))
 
-class Contatos(db.Model):
+class Contatos(db.Model): #REVISADO
     __tablename__ = 'CONTATOS'
-    id = db.Column(db.String(4), primary_key=True) #VERIFICAR
+    id = db.Column(db.Integer, primary_key=True) #VERIFICAR
     contato = db.Column(db.String(11))
+    paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id'))
+    medico_id = db.Column(db.Integer, db.ForeignKey('MEDICOS.id'))
+    
 
 class Anamneses(db.Model):
     __tablename__ = 'ANAMNESES'
-    id = db.Column(db.String(4), primary_key=True) #VERIFICAR
+    id = db.Column(db.Integer, primary_key=True) #VERIFICAR
     
     bemSaude = db.Column(db.Boolean)
     sobCuidado = db.Column(db.Boolean)
@@ -79,29 +84,27 @@ class Anamneses(db.Model):
     tempoFuma = db.Column(db.Interval)
     cigarrosPorDia = db.Column(db.Integer)
     
-    medicamentos = 0 #FK
-    medicoResponsavel = 0 #FK
+    medicamentos = db.relationships('Medicamentos', backref='ANAMNESES') #FK
+    medicoResponsavel = db.relationships('Medicos', backref='ANAMNESES') #FK
 
 class Medicamentos(db.Model):
     __tablename__ = 'MEDICAMENTOS'
-    id = db.Column(db.String(4), primary_key=True) #VERIFICAR
-    
-    id = db.Column(db.String(4), )
+    id = db.Column(db.Integer, Primary_key=True)
     nome = db.Column(db.String(32))
-    pass
-    
+    anamneses_id = db.Column(db.Integer, db.ForeignKey('ANAMNESES.id'))
+
 class Medicos(db.Model):
     __tablename__ = 'MEDICOS'
-    id = db.Column(db.String(4), primary_key=True) #VERIFICAR
+    id = db.Column(db.Integer, primary_key=True) #VERIFICAR
     
-    telefone = 0 #TELEFONE DO MEDICO
-    pass
+    telefone = db.relationships('Contatos', backref='MEDICOS') #TELEFONE DO MEDICO
 
 class Doencas(db.Model):
     __tablename__ = 'DOENCAS'
     id = db.Column(db.String(4), primary_key=True) #VERIFICAR
+    Doencas = db.Column(db.String(20))
     
-    pass
+    paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id'))
 
 @app.route('/')
 def inicio():
