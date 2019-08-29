@@ -1,18 +1,8 @@
 (% extends base.html %)
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Consultório Odontológico</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<h1> Formulário </h1>
+{% block title %} {{ super() }} - Formulário{% endblock %}
 
-</head>
-<body>
-   
+{% block page_content %}
     <fieldset class= "jj">
         <div class= "area">
                <label for= "nome">Nome:</label>
@@ -51,17 +41,4 @@
 			</select>
         </div>
     </fieldset>
-    	
-
-
-</body>
-<style>
-    h1{
-    color: #354e61;
-    text-align: center;
-    }
-    h5{
-    color: #354e61;
-    }
-</style>
-</html>
+   {% endblock %}
