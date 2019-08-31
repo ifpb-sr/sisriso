@@ -118,9 +118,13 @@ def clientes():
 
 @app.route('/dentista/cadastro', methods = ['POST', 'GET'])
 def cadastroDentista():
-    teste = request.args.get('select')
-    teste2 = request.args.get('Cnome')
-    print(teste, teste2)
+    nome = request.form['nome']
+    sexo = request.form['sexo']
+    email = request.form['email']
+    endereco = request.form['endereco']
+    cidade = request.form['cidade']
+    estado = request.form['estado']
+    print(nome, sexo, email, endereco, cidade, estado)
     return render_template('dentistas/cadastrodentista2.html')
 
 
@@ -132,6 +136,11 @@ def procedimentos():
 @app.route('/secretaria/cadastro')
 def cadastroSecretaria():
     return render_template('secretaria/cadastroSecretaria.html')
+
+
+@app.route('/relatorio')
+def relatorio():
+    return render_template('Relatorio.html')
 
 
 '''@app.shell_context_processor

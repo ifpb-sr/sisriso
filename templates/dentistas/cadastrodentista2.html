@@ -5,34 +5,44 @@
 
 {% block page_content %} 
 
-<form>
+<form action="#" method="POST">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Cnome">Nome</label>
-      <input type="text" class="form-control" id="Cnome" name="Cnome" placeholder="Nome Completo">
+      <input type="text" class="form-control" id="Cnome" name="nome" placeholder="Nome Completo">
+    </div>
+
+    <div class="form-check">
+      <label>Sexo</label>
+      <label class="checkbox">
+        <input type="radio" name="sexo" value="masculino"> Masculino
+      </label>
+      <label class="checkbox">
+        <input type="radio" name="sexo" value="feminino"> Feminino
+      </label>
     </div>
   </div>
 
-  <div class="form-row">
+  <div class="form-group">
+    <label for="botaoemail">E-mail</label>
+    <input type="email" class="form-control" id="botaoemail" name="email" placeholder="E-mail">
+  </div>
+
+  <div class="row">
     <div class="form-group col-md-6">
-      <label for="botaoemail">E-mail</label>
-      <input type="email" class="form-control" id="botaoemail" placeholder="E-mail">
+      <label for="botaoendereço">Endereço</label>
+      <input type="text" class="form-control" id="botaoendereço" name="endereco" placeholder="Endereço">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="botaocidade">Cidade</label>
+      <input type="text" class="form-control" id="botaocidade" name="cidade" placeholder="Cidade">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="botaoendereço">Endereço</label>
-    <input type="text" class="form-control" id="botaoendereço" placeholder="Endereço">
-  </div>
-
-  <div class="form-group">
-    <label for="botaocidade">Cidade</label>
-    <input type="text" class="form-control" id="botaocidade" placeholder="Cidade">
-  </div>
-
-  <div class="form-group col-md-6">
     <label for="inputEstado">Estado</label>
-    <select id="inputEstado" class="form-control">
+    <select id="inputEstado" class="form-control" name="estado">
       <option selected>---</option>
       <option>Acre (AC)</option>
       <option>Alagoas (AL)</option>
@@ -64,14 +74,7 @@
     </select>
   </div>
 
-  <div class="form-check">
-    <legend class="col-form-label col-sm-2 pt-0">Sexo</legend>
-    <input class="form-check-input" type="radio" name="select" id="SexoM" value="Masculino" >
-    <label class="SM" for="SexoM">Masculino</label> 
-    <input class="form-check-input" type="radio" name="select" id="SexoF" value="Feminino" >
-    <label class="SF" for="SexoF">Feminino</label>
-  </div>
-
   <button type="submit" class="btn btn-primary">Cadastrar</button>
+
 </form>
 {% endblock %}
