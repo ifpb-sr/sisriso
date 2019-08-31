@@ -42,10 +42,15 @@ class Pacientes(db.Model): #REVISADO
     urgenciaTelefone = db.Column(db.String(11))
     observacao = db.Column(db.String(128))
     #fim urgencia
+    #MATR convenio
+    matr = db.Column(db.String(14))
+    #-------------------------------
     
-    contatos = db.relationship('Contatos', backref='PACIENTES') #FK
-    convenios = db.relationship('Convenios', backref='PACIENTES') #FK
-    doencas = db.relationship('Doencas', backref='PACIENTES') #FK
+    contatos_id = db.Column(db.Integer, db.ForeignKey('CONTATOS.id')) #1-N REVISADO
+    convenios = db.relationship('Convenios', backref='PACIENTES') #REVISADO
+    
+    doencas = db.relationship('Doencas', backref='PACIENTES')
+    anamneses = db.relationship('Anamneses', uselist=False, backref='PACIENTES')  #REVISADO
     
     '''@staticmethod
     def inserir_tipos():
@@ -59,16 +64,16 @@ class Convenios(db.Model): #REVISADO
     __tablename__ = 'CONVENIOS'
     id = db.Column(db.Integer, primary_key=True) #VERIFICAR
     tipoPlano = db.Column(db.String(32))
-    matr = db.Column(db.String(14))
     
-    paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id'))
+    paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id')) #REVISADO
 
 class Contatos(db.Model): #REVISADO
     __tablename__ = 'CONTATOS'
     id = db.Column(db.Integer, primary_key=True) #VERIFICAR
     contato = db.Column(db.String(11))
-    paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id'))
-    medico_id = db.Column(db.Integer, db.ForeignKey('MEDICOS.id'))
+    
+    pacientes = db.relationship('Pacientes', backref='CONTATOS') #REVISADO
+    #medico_id = db.Column(db.Integer, db.ForeignKey('MEDICOS.id'))
     
 
 class Anamneses(db.Model):
@@ -84,27 +89,31 @@ class Anamneses(db.Model):
     tempoFuma = db.Column(db.Interval)
     cigarrosPorDia = db.Column(db.Integer)
     
-    medicamentos = db.relationship('Medicamentos', backref='ANAMNESES') #FK
-    medicoResponsavel = db.relationship('Medicos', backref='ANAMNESES') #FK
+    #--------------------RELATIONSHIPS e FKs-------------------
+    
+    paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id'))
+    #medicamentos = db.relationship('Medicamentos', backref='ANAMNESES') #FK
+    #medicoResponsavel = db.relationship('Medicos', backref='ANAMNESES') #FK
 
 class Medicamentos(db.Model):
     __tablename__ = 'MEDICAMENTOS'
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(32))
-    anamneses_id = db.Column(db.Integer, db.ForeignKey('ANAMNESES.id'))
+    
+    #anamneses_id = db.Column(db.Integer, db.ForeignKey('ANAMNESES.id'))
 
 class Medicos(db.Model):
     __tablename__ = 'MEDICOS'
     id = db.Column(db.Integer, primary_key=True) #VERIFICAR
     
-    telefone = db.relationship('Contatos', backref='MEDICOS') #TELEFONE DO MEDICO
+    #telefone = db.relationship('Contatos', backref='MEDICOS') #TELEFONE DO MEDICO
 
 class Doencas(db.Model):
     __tablename__ = 'DOENCAS'
     id = db.Column(db.String(4), primary_key=True) #VERIFICAR
     Doencas = db.Column(db.String(20))
     
-    paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id'))
+    #paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id'))
 
 @app.route('/')
 def inicio():
