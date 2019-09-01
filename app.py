@@ -18,6 +18,16 @@ bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+usam = db.Table("usam",
+    db.Column('paciente_id', db.Integer, db.ForeignKey('PACIENTES.id')),
+    db.Column('medico_id', db.Integer, db.ForeignKey('MEDICOS.id'))
+) #REVISADO
+
+possuem = db.Table("possuem",
+    db.Column('paciente_id', db.Integer, db.ForeignKey('PACIENTES.id')),
+    db.Column('doenca_id', db.Integer, db.ForeignKey('DOENCAS.id'))
+) #REVISADO
+
 class Pacientes(db.Model): #REVISADO
     __tablename__ = 'PACIENTES'
     id = db.Column(db.Integer, primary_key=True)
@@ -52,6 +62,16 @@ class Pacientes(db.Model): #REVISADO
     doencas = db.relationship('Doencas', backref='PACIENTES')
     anamneses = db.relationship('Anamneses', uselist=False, backref='PACIENTES')  #REVISADO
     
+    medicamentos = db.relationship('Medicamentos',
+                                    secondary='usam',
+                                    backref=db.backref('PACIENTES', lazy='dynamic'),
+                                    lazy='dynamic') #REVISADO
+    
+    doencas = db.relationship('Doencas',
+                                    secondary='possuem',
+                                    backref=db.backref('PACIENTES', lazy='dynamic'),
+                                    lazy='dynamic') #REVISADO N-N
+    
     '''@staticmethod
     def inserir_tipos():
         db.session.add(Dentista(nome="Ismael"))
@@ -73,8 +93,6 @@ class Contatos(db.Model): #REVISADO
     contato = db.Column(db.String(11))
     
     pacientes = db.relationship('Pacientes', backref='CONTATOS') #REVISADO
-    #medico_id = db.Column(db.Integer, db.ForeignKey('MEDICOS.id'))
-    
 
 class Anamneses(db.Model):
     __tablename__ = 'ANAMNESES'
@@ -95,11 +113,20 @@ class Anamneses(db.Model):
     #medicamentos = db.relationship('Medicamentos', backref='ANAMNESES') #FK
     #medicoResponsavel = db.relationship('Medicos', backref='ANAMNESES') #FK
 
+receitas = db.Table ('receitas', 
+    db.Column('medicamentos_id', db.Integer, db.ForeignKey('MEDICAMENTOS.id')),
+    db.Column('medicos_id', db.Integer, db.ForeignKey('MEDICOS.id'))
+) #REVISADO
+
 class Medicamentos(db.Model):
     __tablename__ = 'MEDICAMENTOS'
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(32))
     
+    medicos = db.relationship('Medicos', 
+                            secondary=receitas,
+                            backref=db.backref('MEDICAMENTOS', lazy='dynamic'),
+                            lazy='dynamic') #REVISADO
     #anamneses_id = db.Column(db.Integer, db.ForeignKey('ANAMNESES.id'))
 
 class Medicos(db.Model):
