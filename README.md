@@ -8,20 +8,28 @@ Descrição do propósito
 Para utilizar o sisriso faz-se necessário configurar algumas variáveis de ambiente. Crie o arquivo `.env` com os valores apropriados, utilizando o arquivo `.env.exemplo` como base:
 
     cp .env.exemplo .env
-    
-
+ 
 # Testar HTML com templates
 
 ## Pré-requisitos
-    * repositório baixado
+* repositório baixado
+
         $ git clone https://github.com/ifpb-sr/sisriso.git
-    * estar na pasta do repositório
+        
+* estar na pasta do repositório
+
         $ cd sisriso/
-    * pipenv instalado
+        
+* pipenv instalado
+
         $ pip install pipenv
-    * estar com o ambiente virtual do pipenv ativado
+        
+* estar com o ambiente virtual do pipenv ativado
+
         $ pipenv shell
-    * estar com as dependencias do pipenv instalado
+        
+* estar com as dependencias do pipenv instalado
+
         $ pipenv install
     
 ## Configurando
@@ -41,16 +49,15 @@ Crie o arquivo `.env` com os valores apropriados, utilizando o arquivo `.env.exe
     
 Configure casa variável com os seguintes valores
 
-```
-export FLASK_APP=app.py
-export FLASK_ENV=development
-```
+    export FLASK_APP=app.py
+    export FLASK_ENV=development
 
 A variável `FLASK_ENV` configurada com esse valor ativa o modo debug e o `FLASK_APP` indica em que arquivo esta o programa com FLASK.
 
 Para configurar as variáveis basta executar o seguinte comando
    
     $ source .env
+    
 ### Rotas
 Verifique se ja existe uma rota no arquivo `app.py` para sua página. Se existir, será parecido com a imagem a seguir:
 
