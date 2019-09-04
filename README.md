@@ -29,6 +29,6 @@ Coloque o arquivo HTML na pasta templates
 
 > Se tiver uma pasta específica para sua página, coloque o seu arquivo lá
 
-> **OBS: O ideal é que as alterações sejam feitas ja dentro do repositório, caso não esteja fazendo isso e o seu arquivo ainda não existir no repositório crie ele e o adicione ao repositório, CASO JÁ ESTEJA TRABALHANDO ASSIM,*DESCONSIDERE* **
+> OBS: O ideal é que as alterações sejam feitas ja dentro do repositório, caso não esteja fazendo isso e o seu arquivo ainda não existir no repositório crie ele e o adicione ao repositório, CASO JÁ ESTEJA TRABALHANDO ASSIM,*DESCONSIDERE*
 
-![Exemplo da aparência da pasta "templates"](/home/batnight99/Imagens/Captura de tela de 2019-09-04 17-39-55.png)
+![Exemplo da aparência da pasta "templates"](https://github.com/alefemoreira/imagens/blob/master/Captura%20de%20tela%20de%202019-09-04%2017-39-55.png)
