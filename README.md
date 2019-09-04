@@ -25,7 +25,8 @@ Para utilizar o sisriso faz-se necessário configurar algumas variáveis de ambi
         $ pipenv install
     
 ## Configurando
-### Coloque o arquivo HTML na pasta templates
+### Arquivos
+Coloque o arquivo HTML na pasta templates
 
 > Se tiver uma pasta específica para sua página, coloque o seu arquivo lá
 
@@ -45,4 +46,11 @@ export FLASK_APP=app.py
 export FLASK_ENV=development
 ```
 
-A variável `FLASK_ENV` configurada com esse valor ativa o modo debug e o `FLASK_APP` indica em que arquivo esta o programa com FLASK
+A variável `FLASK_ENV` configurada com esse valor ativa o modo debug e o `FLASK_APP` indica em que arquivo esta o programa com FLASK.
+
+Para configurar as variáveis basta executar o seguinte comando
+   
+   ```$ source .env```
+
+## Executando
+
