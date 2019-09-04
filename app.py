@@ -158,13 +158,13 @@ def clientes():
 
 @app.route('/dentista/cadastro', methods = ['POST', 'GET'])
 def cadastroDentista():
-    nome = request.form['nome']
-    sexo = request.form['sexo']
-    email = request.form['email']
-    endereco = request.form['endereco']
-    cidade = request.form['cidade']
-    estado = request.form['estado']
-    print(nome, sexo, email, endereco, cidade, estado)
+    if request.method == 'POST':
+        nome = request.form['nome']
+        sexo = request.form['sexo']
+        email = request.form['email']
+        endereco = request.form['endereco']
+        cidade = request.form['cidade']
+        estado = request.form['estado']
     return render_template('dentistas/cadastrodentista2.html')
 
 
