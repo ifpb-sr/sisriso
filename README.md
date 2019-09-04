@@ -50,7 +50,37 @@ A variável `FLASK_ENV` configurada com esse valor ativa o modo debug e o `FLASK
 
 Para configurar as variáveis basta executar o seguinte comando
    
-   ```$ source .env```
+    $ source .env
+### Rotas
+Verifique se ja existe uma rota no arquivo `app.py` para sua página. Se existir, será parecido com a imagem a seguir:
+
+![Exemplo de rota](https://github.com/alefemoreira/imagens/blob/master/Captura%20de%20tela%20de%202019-09-04%2018-10-54.png)
+
+**Caso não exista basta copiar as linhas abaixo e alterar o que esta digitado da seguinte forma `$ALGO_EM_MAIUSCULO`**
+
+    @app.route('/$NOME_DO_SEU_CAMINHO')
+    def $NOME_DO_SEU_CAMINHO():
+        return render_template('$CAMINHO_DO_SEU_ARQUIVO')
+    #O caminho do arquivo é relativo a pasta `templates`
 
 ## Executando
+Para executar verifique se estar com o `pipenv` está ativado. Se estiver o terminal terá o `(sisriso)` na frente na sua posição. CUIDADO PARA NÃO SAIR DA PASTA DO PROJETO COM ELE ATIVADO.
 
+![Terminal com o pipenv ativo](https://github.com/alefemoreira/imagens/blob/master/Captura%20de%20tela%20de%202019-09-04%2018-18-26.png)
+
+Agora basta executar o seguinte comando:
+
+    flask run -p 8080
+
+* Agora se você estiver na AWS, precisa executar os seguintes passos:
+
+        Clicar em `preview` no menu do topo
+        Em seguida clique em `Preview Running Application`
+        Digite seu caminho na barra de pesquisa da janela que irá se abrir
+
+![Menu do Topo](https://github.com/alefemoreira/imagens/blob/master/Captura%20de%20tela%20de%202019-09-04%2018-23-12.png)
+![Janela Que Se Abre](https://github.com/alefemoreira/imagens/blob/master/Captura%20de%20tela%20de%202019-09-04%2018-27-28.png)
+
+* Agora se você estiver em um computador, basta abrir um navegador e digitar o link:
+
+        localhost:8080/$NOME_DO_SEU_CAMINHO
