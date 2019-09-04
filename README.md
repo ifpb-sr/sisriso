@@ -1,6 +1,10 @@
 # sisriso
 
-Descrição do propósito
+Auxliar na administração de um consultório de um dentista
+
+## Funcionalidades
+
+ Descrever funcionalidades
 
 # Desenvolvimento
 
