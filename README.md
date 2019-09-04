@@ -31,4 +31,4 @@ Coloque o arquivo HTML na pasta templates
 
 > **OBS: O ideal é que as alterações sejam feitas ja dentro do repositório, caso não esteja fazendo isso e o seu arquivo ainda não existir no repositório crie ele e o adicione ao repositório, CASO JÁ ESTEJA TRABALHANDO ASSIM,*DESCONSIDERE* **
 
-![Exemplo da aparência da pasta "templates"](/home/batnight99/Imagens/Captura de tela de 2019-09-04 17-39-55.png "aparencia de \"templates\" ")
+![Exemplo da aparência da pasta "templates"](/home/batnight99/Imagens/Captura de tela de 2019-09-04 17-39-55.png)
