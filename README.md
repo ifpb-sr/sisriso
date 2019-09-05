@@ -95,3 +95,6 @@ Agora basta executar o seguinte comando:
 * Agora se você estiver em um computador, basta abrir um navegador e digitar o link:
 
         localhost:8080/$NOME_DO_SEU_CAMINHO
+
+# License
+Esse sistema é disponibilizado como software livre através da [Licença MIT](http://opensource.org/licenses/MIT).
