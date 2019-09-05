@@ -67,13 +67,13 @@ Verifique se ja existe uma rota no arquivo `app.py` para sua página. Se existir
 
 ![Exemplo de rota](https://github.com/alefemoreira/imagens/blob/master/Captura%20de%20tela%20de%202019-09-04%2018-10-54.png)
 
-**Caso não exista basta copiar as linhas abaixo e alterar o que esta digitado da seguinte forma `$ALGO_EM_MAIUSCULO`**
+**Caso não exista basta copiar as linhas abaixo e alterar o que esta digitado da seguinte forma `ALGO_EM_MAIUSCULO`**
 
 ~~~python
-@app.route('/$NOME_DO_SEU_CAMINHO')
-def $NOME_DO_SEU_CAMINHO():
-    return render_template('$CAMINHO_DO_SEU_ARQUIVO')
-#O caminho do arquivo é relativo a pasta `templates`
+@app.route('/NOME_DO_SEU_CAMINHO')
+def NOME_DO_SEU_CAMINHO():
+    return render_template('CAMINHO_DO_SEU_ARQUIVO')
+#O caminho do arquivo é relativo a pasta templates
 ~~~
 
 ## Executando
