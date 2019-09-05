@@ -18,7 +18,9 @@ Para utilizar o sisriso faz-se necessário configurar algumas variáveis de ambi
 ## Pré-requisitos
 * repositório baixado
 
-        $ git clone https://github.com/ifpb-sr/sisriso.git
+~~~bash
+$ git clone https://github.com/ifpb-sr/sisriso.git
+~~~
         
 * estar na pasta do repositório
 
