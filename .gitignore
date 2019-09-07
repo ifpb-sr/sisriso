@@ -107,3 +107,4 @@ venv.bak/
 
 # SQLite
 *.sqlite
+data.sqlite
