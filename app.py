@@ -7,6 +7,8 @@ from wtforms.validators import DataRequired, NumberRange
 from wtforms.widgets.html5 import NumberInput
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, upgrade
+# import pdb
+# pdb.set_trace()
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -22,19 +24,6 @@ bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-tomar = db.table('tomar',
-        db.Column('paciente_id', db.Integer, db.ForeignKey('PACIENTES.id')),
-        db.Column('medicamento_id', db.Integer,db.ForeignKey('MEDICAMENTOS.id'))
-)
-possuir = db.table('possuir',
-        db.Column('paciente_id', db.Integer, db.ForeignKey('PACIENTES.id')),
-        db.Column('doenca_id', db.Integer, db.ForeignKey('DOENCAS.id')),
-)
-receitar = db.table('receitar',
-        db.Column('medicamento_id', db.Integer, db.ForeignKey('MEDICAMENTOS.id')),
-        db.Column('medico_id', db.Integer, db.ForeignKey('MEDICOS.id')),
-)
-
 class Pacientes(db.Model):
     __tablename__ = 'PACIENTES'
     id = db.Column(db.Integer, primary_key=True)
@@ -46,32 +35,27 @@ class Pacientes(db.Model):
     cpf = db.Column(db.String(14))
     profissao = db.Column(db.String(64))
     indicacao = db.Column(db.String(64))
-    ###ENDERECO###
+
     rua = db.Column(db.String(64))
     bairro = db.Column(db.String(64))
     cep = db.Column(db.String(9))
     numero = db.Column(db.String(5))
     cidade = db.Column(db.String(32))
     estado = db.Column(db.String(2))
-    ###URGENCIA###
+    medicamentos = db.Column(db.String(64), default="")
+    medico = db.Column(db.String(64), default="")
+    doencas = db.Column(db.String(64), default="")
+
     urgenciaNome = db.Column(db.String(64))
     urgenciaTelefone = db.Column(db.String(11))
     observacao = db.Column(db.String(128))
-    ###MATRICULA Convenio###
+
     matr = db.Column(db.String(14))
-    ###CHAVES ESTRANGEIRAS###
+
     convenio_id = db.Column(db.Integer, db.ForeignKey('CONVENIOS.id'), default=0) #PK
-    ###RELACIONAMENTOS###
+
     anamnese = db.relationship('Anamneses', backref='PACIENTES', uselist=False)
     contatos = db.relationship('Contatos', backref='PACIENTES')
-    medicamentos = db.relationship('Medicamentos',
-                secondary=tomar,
-                backref=db.backref('PACIENTES', lazy='dynamic'),
-                lazy='dynamic')
-    doencas = db.relationship('Doencas',
-                secondary=possuir,
-                backref=db.backref('PACIENTES', lazy='dynamic'),
-                lazy='dynamic')
 
 class Anamneses(db.Model):
     __tablename__ = 'ANAMNESES'
@@ -96,27 +80,9 @@ class Contatos(db.Model):
 class Convenios(db.Model):
     __tablename__ = 'CONVENIOS'
     id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(64))
     tipoPlano = db.Column(db.String(16))
     pacientes = db.relationship('Pacientes', backref='CONVENIOS')
-
-class Doencas(db.Model):
-    __tablename__ = 'DOENCAS'
-    id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(32))
-
-class Medicamentos(db.Model):
-    __tablename__ = 'MEDICAMENTOS'
-    id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(32))
-    medicos = db.relationship('Medicos',
-                secondary=receitar,
-                backref=db.backref('MEDICAMENTOS', lazy='dynamic'),
-                lazy='dynamic')
-
-class Medicos(db.Model):
-    __tablename__ = 'MEDICOS'
-    id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(32))
 
 @app.route('/')
 def inicio():
