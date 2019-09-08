@@ -16,6 +16,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] =\
     'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
@@ -36,12 +37,14 @@ class Pacientes(db.Model):
     profissao = db.Column(db.String(64))
     indicacao = db.Column(db.String(64))
 
-    rua = db.Column(db.String(64))
+    tipo = db.Column(db.String(16))
+    logradouro = db.Column(db.String(64))
     bairro = db.Column(db.String(64))
     cep = db.Column(db.String(9))
     numero = db.Column(db.String(5))
     cidade = db.Column(db.String(32))
     estado = db.Column(db.String(2))
+
     medicamentos = db.Column(db.String(64), default="")
     medico = db.Column(db.String(64), default="")
     doencas = db.Column(db.String(64), default="")
