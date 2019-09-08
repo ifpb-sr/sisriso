@@ -16,25 +16,29 @@ Para utilizar o sisriso faz-se necessário configurar algumas variáveis de ambi
 # Testar HTML com templates
 
 ## Pré-requisitos
-* repositório baixado
+* Repositório baixado
 
         $ git clone https://github.com/ifpb-sr/sisriso.git
         
-* estar na pasta do repositório
+* Estar na pasta do repositório
 
         $ cd sisriso/
         
-* pipenv instalado
+* Pipenv instalado
 
         $ pip install pipenv
         
-* estar com o ambiente virtual do pipenv ativado
+* Estar com o ambiente virtual do pipenv ativado
 
         $ pipenv shell
         
-* estar com as dependencias do pipenv instalado
+* Estar com as dependencias do pipenv instalado
 
         $ pipenv install
+        
+* Criar o diretório `instance`
+
+        $ mkdir instance
     
 ## Configurando
 ### Arquivos
