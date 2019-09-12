@@ -26,7 +26,7 @@ Para utilizar o sisriso faz-se necessário configurar algumas variáveis de ambi
         
 * Pipenv instalado
 
-        $ pip install pipenv
+        $ pip install pipenv --user
         
 * Estar com o ambiente virtual do pipenv ativado
 
