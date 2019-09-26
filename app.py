@@ -71,9 +71,40 @@ class Anamneses(db.Model):
     fumante = db.Column(db.Boolean)
     tempoFuma = db.Column(db.Interval)
     cigarrosPorDia = db.Column(db.Integer)
+    Cardiopatia = db.Column(db.Boolean)
+    Alergia = db.Column(db.Boolean)
+    Cefaleia = db.Column(db.Boolean)
+    Convulsao = db.Column(db.Boolean)
+    Gastrite = db.Column(db.Boolean)
+    Alcoolismo = db.Column(db.Boolean)
+    Nefropatia = db.Column(db.Boolean)
+    Diabetes = db.Column(db.Boolean)
+    Herpes = db.Column(db.Boolean)
+    Asma = db.Column(db.Boolean)
+    Labirintite = db.Column(db.Boolean)
+    Anemia = db.Column(db.Boolean)
+    Hemofilia = db.Column(db.Boolean)
+    Glaucoma = db.Column(db.Boolean)
+    Hipertensao = db.Column(db.Boolean)
+    Enxaqueca = db.Column(db.Boolean)
+    Artrite = db.Column(db.Boolean)
+    Hepatite    = db.Column(db.Boolean)
+    Sinusite = db.Column(db.Boolean)
+    Imunodeficiencia = db.Column(db.Boolean)
+    Hapatopatia = db.Column(db.Boolean)
+    Cancer = db.Column(db.Boolean)
+    DisturbioNervoso = db.Column(db.Boolean)
+    FebreReatica = db.Column(db.Boolean)
     ###Chaves Estrangeiras###
     paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id')) #PK
-
+                                  
+class Medicamentos(db.Model):
+   __tablename__ = 'MEDICAMENTOS'
+   id = db.Column(db.Integer, primary_key=True)
+   nomeMedicamentos = db.Column(db.String(50))
+   medicoResponsavel = db.Column(db.String(50))
+   paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id')) #PK
+                                 
 class Contatos(db.Model):
     __tablename__ = 'CONTATOS'
     id = db.Column(db.Integer, primary_key=True)
