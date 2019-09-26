@@ -27,10 +27,10 @@ migrate = Migrate(app, db)
 
 class Pacientes(db.Model):
     __tablename__ = 'PACIENTES'
-    id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(64))
+    id_paciente = db.Column(db.Integer, primary_key=True)
+    nomePacientes = db.Column(db.String(64))
     tipoSanguinio = db.Column(db.String(3))
-    idade = db.Column(db.Integer)
+    dataNascimentoPaciente = db.Column(db.Date)
     sexo = db.Column(db.String(1))
     rg = db.Column(db.String(14))
     cpf = db.Column(db.String(14))
@@ -59,10 +59,35 @@ class Pacientes(db.Model):
 
     anamnese = db.relationship('Anamneses', backref='PACIENTES', uselist=False)
     contatos = db.relationship('Contatos', backref='PACIENTES')
+    
+class Dentista(db.Model):
+   __tablename__ = 'DENTISTA'
+   cro_dentista = db.Column(db.Integer, primary_key=True)
+   nomeDentista =  db.Column(db.String(30))
+   especialidadeDentista = db.Columnn(db.String(50))
+   telefone = db.Column(db.String(11))
+   dataNascimentoDentista = db.Column(db.Date)
 
+class Dentes(db.Model):
+    __tablename__ = 'DENTES'
+    codigo_dente = db.Column(db.Integer, primary_key=True))
+    descricaoDente = db.Column(db.String(50))
+    feito = db.Column(db.Boolean) 
+    aFazer = db.Column(db.Boolean)
+
+    
+class Atendimento(db.Model):
+    __tablename__ = 'ATENDIMENTO'
+    codigo_atendimento = db.Column(db.Integer, primary_key=True)
+    dataHora = db.Column(db.DataTime)
+    valorAtendimento = db.Column(db.Float)
+    paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id_paciente')) #PK
+    dentista_id = db.Column(db.Integer, db.ForeignKey('DENTISTA.id_dentista')) #PK
+    dente_cod = db.Column(db.Integer, db.ForeignKey('DENTE.codigo_dente')) #PK
+    
 class Anamneses(db.Model):
     __tablename__ = 'ANAMNESES'
-    id = db.Column(db.Integer, primary_key=True)
+    id_anamnese = db.Column(db.Integer, primary_key=True)
     bemSaude = db.Column(db.Boolean)
     sobCuidado = db.Column(db.Boolean)
     motivoCuidado = db.Column(db.String(64))
@@ -96,11 +121,11 @@ class Anamneses(db.Model):
     DisturbioNervoso = db.Column(db.Boolean)
     FebreReatica = db.Column(db.Boolean)
     ###Chaves Estrangeiras###
-    paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id')) #PK
-                                  
+    paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id_paciente')) #PK
+           
 class Medicamentos(db.Model):
    __tablename__ = 'MEDICAMENTOS'
-   id = db.Column(db.Integer, primary_key=True)
+   id_medicamentos = db.Column(db.Integer, primary_key=True)
    nomeMedicamentos = db.Column(db.String(50))
    medicoResponsavel = db.Column(db.String(50))
    paciente_id = db.Column(db.Integer, db.ForeignKey('PACIENTES.id')) #PK
